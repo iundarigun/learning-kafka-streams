@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: kafka-stream
+  kafka:
+    consumer:
+      topics:
+        payment: PAYMENT-TOPIC
+      group-id: ${spring.application.name}-local
+      bootstrap-servers: ${spring.kafka.producer.bootstrap-servers}
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    producer:
+      topics:
+        outbound: OUTBOUND-TOPIC
+      bootstrap-servers: localhost:9092
+      client-id: PRODUCER.LOCAL
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
